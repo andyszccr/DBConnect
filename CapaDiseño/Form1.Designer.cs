@@ -151,6 +151,7 @@
             this.TVArbolDB.Name = "TVArbolDB";
             this.TVArbolDB.Size = new System.Drawing.Size(194, 414);
             this.TVArbolDB.TabIndex = 7;
+            this.TVArbolDB.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TVArbolDB_AfterSelect);
             // 
             // TxtConsulta
             // 

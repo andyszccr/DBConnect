@@ -21,6 +21,15 @@ namespace CapaNegocio
 
             
         }
+
+        public string SQLCn2(string servidor, string usuario, string contraseña) // utilizar el string conexion para conectarse a motor y meterle paramtros
+        {
+            string cn = CapaDatos.Conexiones.conexionSQL(servidor, usuario, contraseña);
+            string cn2 = cn + "nombre de la base de datos";
+            return cn2;
+
+
+        }
         public string MYSQLCn(string servidor, string usuario, string contraseña) // utilizar el string conexion para conectarse a motor y meterle paramtros
         {
             string cn = CapaDatos.Conexiones.ConexionMysql(servidor, usuario, contraseña);
@@ -41,4 +50,20 @@ namespace CapaNegocio
 
         }
     }
+   public class arbol
+    {
+
+    }
+
+    public class archivos
+    {
+        public void txt()
+        { 
+        }
+
+        public void excel()
+        { 
+        }
+    }
+
 }

@@ -20,6 +20,11 @@ namespace CapaDiseño
         public string servidor, usuario, contraseña, consulta, stringCN;
         public Boolean motorSql, motorMysql, motorOracle;
 
+        private void TVArbolDB_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            // aca va a venir el nombre de la base datos
+        }
+
         private void BtnConectar_Click(object sender, EventArgs e)
         {
             servidor = Convert.ToString(TxtHost.Text);
@@ -99,13 +104,14 @@ namespace CapaDiseño
                 var _ = new SqlConnection(stringCN);
                 _.Open();
                 DGVConsultas.DataSource = CapaNegocio.ManejoCN.ejecutar(consulta, stringCN);
-            }
+                _.Close();
+        }
             catch (Exception exs)
             {
                 MessageBox.Show("error en consulta por " + exs.Message);
             }
 
-        }
+}
 
         public Form1()
         {
