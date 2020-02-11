@@ -45,6 +45,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.BtnSalir = new System.Windows.Forms.Button();
+            this.BtnGuardarTxt = new System.Windows.Forms.Button();
+            this.BtnGuadarExc = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVConsultas)).BeginInit();
             this.SuspendLayout();
@@ -67,6 +69,7 @@
             // 
             this.TxtPass.Location = new System.Drawing.Point(393, 28);
             this.TxtPass.Name = "TxtPass";
+            this.TxtPass.PasswordChar = '*';
             this.TxtPass.Size = new System.Drawing.Size(185, 22);
             this.TxtPass.TabIndex = 2;
             // 
@@ -92,7 +95,7 @@
             // 
             // BtnEjecutar
             // 
-            this.BtnEjecutar.Location = new System.Drawing.Point(1129, 284);
+            this.BtnEjecutar.Location = new System.Drawing.Point(213, 58);
             this.BtnEjecutar.Name = "BtnEjecutar";
             this.BtnEjecutar.Size = new System.Drawing.Size(94, 38);
             this.BtnEjecutar.TabIndex = 5;
@@ -209,11 +212,32 @@
             this.BtnSalir.UseVisualStyleBackColor = true;
             this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
+            // BtnGuardarTxt
+            // 
+            this.BtnGuardarTxt.Location = new System.Drawing.Point(1106, 102);
+            this.BtnGuardarTxt.Name = "BtnGuardarTxt";
+            this.BtnGuardarTxt.Size = new System.Drawing.Size(82, 31);
+            this.BtnGuardarTxt.TabIndex = 14;
+            this.BtnGuardarTxt.Text = "Guardar";
+            this.BtnGuardarTxt.UseVisualStyleBackColor = true;
+            this.BtnGuardarTxt.Click += new System.EventHandler(this.BtnGuardarTxt_Click);
+            // 
+            // BtnGuadarExc
+            // 
+            this.BtnGuadarExc.Location = new System.Drawing.Point(1106, 328);
+            this.BtnGuadarExc.Name = "BtnGuadarExc";
+            this.BtnGuadarExc.Size = new System.Drawing.Size(94, 28);
+            this.BtnGuadarExc.TabIndex = 15;
+            this.BtnGuadarExc.Text = "Exportar";
+            this.BtnGuadarExc.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1248, 557);
+            this.Controls.Add(this.BtnGuadarExc);
+            this.Controls.Add(this.BtnGuardarTxt);
             this.Controls.Add(this.BtnSalir);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -257,6 +281,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button BtnSalir;
+        private System.Windows.Forms.Button BtnGuardarTxt;
+        private System.Windows.Forms.Button BtnGuadarExc;
     }
 }
 

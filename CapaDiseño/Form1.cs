@@ -25,6 +25,11 @@ namespace CapaDiseño
             // aca va a venir el nombre de la base datos
         }
 
+        private void BtnGuardarTxt_Click(object sender, EventArgs e)
+        {
+            //COmento
+        }
+
         private void BtnConectar_Click(object sender, EventArgs e)
         {
             servidor = Convert.ToString(TxtHost.Text);
