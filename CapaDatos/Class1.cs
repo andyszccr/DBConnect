@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 using System.Data.Common;
 using MySql.Data.MySqlClient;
 using MySql.Data.Common;
-using System.Data.OracleClient;
+using Oracle.DataAccess.Client;
 
 namespace CapaDatos
 {
@@ -39,7 +39,7 @@ namespace CapaDatos
             builder.UserID = usuario;
             builder.Password = contraseña;
             builder.PersistSecurityInfo = true;
-            builder.Database = "Mysql";
+            //builder.Database = "prueba";
             var d = builder.ToString();
             return d;
         }
@@ -47,11 +47,12 @@ namespace CapaDatos
         
         public static String ConexionOracle(String servidor, string usuario, string contraseña)
         {
-            string conex;
-            conex = "Data Source= " + servidor + "; User Id= " + usuario + " ;Password= " + contraseña;
-            
-
-            return conex;
+            OracleConnectionStringBuilder OracleBD = new OracleConnectionStringBuilder();
+            OracleBD.Password = contraseña;
+            OracleBD.UserID = usuario;
+            OracleBD.DataSource = servidor;
+            var da = OracleBD.ToString();
+            return da;
         }
 
 
@@ -61,10 +62,21 @@ namespace CapaDatos
     {
         public static DataTable Query(string consulta, string conexionBD)
         {
-            SqlDataAdapter da = new SqlDataAdapter(consulta, conexionBD);
-            da.SelectCommand.CommandType = CommandType.Text;
+            SqlConnection ap = new SqlConnection(conexionBD);
+            SqlCommand cm = new SqlCommand(consulta, ap);
+            SqlDataAdapter da = new SqlDataAdapter(cm);
             DataTable dt = new DataTable();
             da.Fill(dt);
+            return dt;
+        }
+
+        public static DataTable QueryMYSQL(string consulta, string conexionBD)
+        {
+            MySqlConnection ap = new MySqlConnection(conexionBD);
+            MySqlCommand ds = new MySqlCommand(consulta, ap);
+            MySqlDataAdapter daM = new MySqlDataAdapter(ds);
+            DataTable dt = new DataTable();
+            daM.Fill(dt);
             return dt;
         }
 

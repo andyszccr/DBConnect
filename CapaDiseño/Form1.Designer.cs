@@ -38,7 +38,6 @@
             this.RbOracle = new System.Windows.Forms.RadioButton();
             this.RbMysql = new System.Windows.Forms.RadioButton();
             this.RdSQL = new System.Windows.Forms.RadioButton();
-            this.TVArbolDB = new System.Windows.Forms.TreeView();
             this.TxtConsulta = new System.Windows.Forms.TextBox();
             this.DGVConsultas = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,6 +46,10 @@
             this.BtnSalir = new System.Windows.Forms.Button();
             this.BtnGuardarTxt = new System.Windows.Forms.Button();
             this.BtnGuadarExc = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.TVArbolDB = new System.Windows.Forms.TreeView();
+            this.BtnAbrir = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVConsultas)).BeginInit();
             this.SuspendLayout();
@@ -148,14 +151,6 @@
             this.RdSQL.Text = "SQL Server";
             this.RdSQL.UseVisualStyleBackColor = true;
             // 
-            // TVArbolDB
-            // 
-            this.TVArbolDB.Location = new System.Drawing.Point(13, 102);
-            this.TVArbolDB.Name = "TVArbolDB";
-            this.TVArbolDB.Size = new System.Drawing.Size(194, 414);
-            this.TVArbolDB.TabIndex = 7;
-            this.TVArbolDB.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TVArbolDB_AfterSelect);
-            // 
             // TxtConsulta
             // 
             this.TxtConsulta.Location = new System.Drawing.Point(229, 102);
@@ -216,9 +211,9 @@
             // 
             this.BtnGuardarTxt.Location = new System.Drawing.Point(1106, 102);
             this.BtnGuardarTxt.Name = "BtnGuardarTxt";
-            this.BtnGuardarTxt.Size = new System.Drawing.Size(82, 31);
+            this.BtnGuardarTxt.Size = new System.Drawing.Size(130, 31);
             this.BtnGuardarTxt.TabIndex = 14;
-            this.BtnGuardarTxt.Text = "Guardar";
+            this.BtnGuardarTxt.Text = "Guardar Consulta";
             this.BtnGuardarTxt.UseVisualStyleBackColor = true;
             this.BtnGuardarTxt.Click += new System.EventHandler(this.BtnGuardarTxt_Click);
             // 
@@ -231,11 +226,34 @@
             this.BtnGuadarExc.Text = "Exportar";
             this.BtnGuadarExc.UseVisualStyleBackColor = true;
             // 
+            // TVArbolDB
+            // 
+            this.TVArbolDB.Location = new System.Drawing.Point(13, 102);
+            this.TVArbolDB.Name = "TVArbolDB";
+            this.TVArbolDB.Size = new System.Drawing.Size(194, 414);
+            this.TVArbolDB.TabIndex = 7;
+            this.TVArbolDB.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TVArbolDB_AfterSelect);
+            // 
+            // BtnAbrir
+            // 
+            this.BtnAbrir.Location = new System.Drawing.Point(1106, 139);
+            this.BtnAbrir.Name = "BtnAbrir";
+            this.BtnAbrir.Size = new System.Drawing.Size(130, 31);
+            this.BtnAbrir.TabIndex = 16;
+            this.BtnAbrir.Text = "Abrir Consulta";
+            this.BtnAbrir.UseVisualStyleBackColor = true;
+            this.BtnAbrir.Click += new System.EventHandler(this.BtnAbrir_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1248, 557);
+            this.Controls.Add(this.BtnAbrir);
             this.Controls.Add(this.BtnGuadarExc);
             this.Controls.Add(this.BtnGuardarTxt);
             this.Controls.Add(this.BtnSalir);
@@ -274,7 +292,6 @@
         private System.Windows.Forms.RadioButton RbOracle;
         private System.Windows.Forms.RadioButton RbMysql;
         private System.Windows.Forms.RadioButton RdSQL;
-        private System.Windows.Forms.TreeView TVArbolDB;
         private System.Windows.Forms.TextBox TxtConsulta;
         private System.Windows.Forms.DataGridView DGVConsultas;
         private System.Windows.Forms.Label label1;
@@ -283,6 +300,10 @@
         private System.Windows.Forms.Button BtnSalir;
         private System.Windows.Forms.Button BtnGuardarTxt;
         private System.Windows.Forms.Button BtnGuadarExc;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.TreeView TVArbolDB;
+        private System.Windows.Forms.Button BtnAbrir;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

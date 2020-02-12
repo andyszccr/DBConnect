@@ -10,6 +10,10 @@ using System.Windows.Forms;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Data.Common;
+using MySql.Data.MySqlClient;
+using MySql.Data.Common;
+using System.Data.OracleClient;
+using System.IO;
 
 
 namespace CapaDiseño
@@ -19,15 +23,65 @@ namespace CapaDiseño
     {
         public string servidor, usuario, contraseña, consulta, stringCN;
         public Boolean motorSql, motorMysql, motorOracle;
+        
 
-        private void TVArbolDB_AfterSelect(object sender, TreeViewEventArgs e)
+        public void TVArbolDB_AfterSelect(object sender, TreeViewEventArgs e)
         {
             // aca va a venir el nombre de la base datos
         }
 
         private void BtnGuardarTxt_Click(object sender, EventArgs e)
         {
-            //COmento
+            try
+            {
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    if (File.Exists(saveFileDialog1.FileName))
+                    {
+                        string txt = saveFileDialog1.FileName;
+
+
+                        CapaNegocio.archivos.txt(TxtConsulta.Text, txt);
+
+                       
+                    }
+                    else
+                    {
+                        string txt = saveFileDialog1.FileName;
+                        CapaNegocio.archivos.txt(TxtConsulta.Text, txt);
+
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al guardar");
+            }
+        }
+
+        private void BtnAbrir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openFileDialog1.Title = "Busca tu consulta";
+                openFileDialog1.ShowDialog();
+                String text = openFileDialog1.FileName;
+
+                if (File.Exists(openFileDialog1.FileName))
+                {
+
+                    TextReader leer = new StreamReader(text);
+                    TxtConsulta.Text = leer.ReadToEnd();
+                    leer.Close();
+
+                }
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("error al abrir el archivo");
+            }
+
         }
 
         private void BtnConectar_Click(object sender, EventArgs e)
@@ -47,7 +101,7 @@ namespace CapaDiseño
 
                 try
                 {
-                    
+                    cnsql.Open();
                     MessageBox.Show("Conexion exitosa! ");
                     stringCN = cn.ToString();
 
@@ -64,12 +118,13 @@ namespace CapaDiseño
                 {
                     CapaNegocio.ManejoCN prueba = new CapaNegocio.ManejoCN();
                     string cn = prueba.MYSQLCn(servidor, usuario, contraseña);
-                    var cnsql = new SqlConnection(cn);
+                    var cnsql = new MySqlConnection(cn);
 
                     try
                     {
-                        stringCN = cn;
+                        cnsql.Open();
                         MessageBox.Show("Conexion exitosa! ");
+                        stringCN = cn.ToString();
 
                     }
                     catch (Exception ex)
@@ -87,8 +142,10 @@ namespace CapaDiseño
 
                         try
                         {
-                            stringCN = cn;
+                            cnsql.Open();
+                            
                             MessageBox.Show("Conexion exitosa! ");
+                            stringCN = cn.ToString();
 
                         }
                         catch (Exception ex)
@@ -103,17 +160,47 @@ namespace CapaDiseño
 
         private void BtnEjecutar_Click(object sender, EventArgs e)
         {
-            try
+            if (motorSql == true)
             {
-                consulta = Convert.ToString(TxtConsulta.Text);
-                var _ = new SqlConnection(stringCN);
-                _.Open();
-                DGVConsultas.DataSource = CapaNegocio.ManejoCN.ejecutar(consulta, stringCN);
-                _.Close();
-        }
-            catch (Exception exs)
+                try
+                {
+                    consulta = Convert.ToString(TxtConsulta.Text);
+                    var _ = new SqlConnection(stringCN);
+                    _.Open();
+                    DGVConsultas.DataSource = CapaNegocio.ManejoCN.ejecutar(consulta, stringCN);
+                    _.Close();
+                }
+                catch (Exception exs)
+                {
+                    MessageBox.Show("error en consulta por " + exs.Message);
+                }
+            }
+            else
             {
-                MessageBox.Show("error en consulta por " + exs.Message);
+                if (motorMysql == true)
+                {
+                    try
+                    {
+                        consulta = Convert.ToString(TxtConsulta.Text);
+                        var _ = new MySqlConnection(stringCN);
+                        _.Open();
+
+                        DGVConsultas.DataSource = CapaNegocio.ManejoCN.QueryMYSQL(consulta,stringCN);
+                    }
+                    catch (Exception exs)
+                    {
+                        MessageBox.Show("error en consulta por " + exs.Message);
+                    }
+
+                }
+                else
+                {
+                    if (motorOracle==true)
+                    {
+
+                    }
+                }
+
             }
 
 }
@@ -170,7 +257,7 @@ namespace CapaDiseño
                 {
                     CapaNegocio.ManejoCN prueba = new CapaNegocio.ManejoCN();
                     string cn = prueba.MYSQLCn(servidor, usuario, contraseña);
-                    var cnsql = new SqlConnection(cn);
+                    var cnsql = new MySqlConnection(cn);
 
                     try
                     {
@@ -189,7 +276,7 @@ namespace CapaDiseño
                     {
                         CapaNegocio.ManejoCN prueba = new CapaNegocio.ManejoCN();
                         string cn = prueba.ORACLECn(servidor, usuario, contraseña);
-                        var cnsql = new SqlConnection(cn);
+                        var cnsql = new OracleConnection(cn);
 
                         try
                         {

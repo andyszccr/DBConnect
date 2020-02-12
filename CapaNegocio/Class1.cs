@@ -7,6 +7,9 @@ using CapaDatos;
 using System.Data.SqlClient;
 using System.Data.Sql;
 using System.Data;
+using MySql.Data.MySqlClient;
+using MySql.Data.Common;
+using System.IO;
 
 namespace CapaNegocio
 {
@@ -49,6 +52,13 @@ namespace CapaNegocio
             return da;
 
         }
+
+        public static DataTable QueryMYSQL(string consulta, string cn)
+        {
+            
+            var da = CapaDatos.consultas.QueryMYSQL(consulta, cn);
+            return da;
+        }
     }
    public class arbol
     {
@@ -57,8 +67,13 @@ namespace CapaNegocio
 
     public class archivos
     {
-        public void txt()
-        { 
+        public static void txt( String texto, string ruta)
+        {
+            StreamWriter textoaguardar = File.CreateText(ruta);
+            textoaguardar.Write(texto);
+            textoaguardar.Flush();
+            textoaguardar.Close();
+
         }
 
         public void excel()
