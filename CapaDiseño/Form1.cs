@@ -70,7 +70,6 @@ namespace CapaDiseño
 
                 if (File.Exists(openFileDialog1.FileName))
                 {
-
                     TextReader leer = new StreamReader(text);
                     TxtConsulta.Text = leer.ReadToEnd();
                     leer.Close();
