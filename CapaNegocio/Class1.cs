@@ -11,6 +11,7 @@ using MySql.Data.MySqlClient;
 using MySql.Data.Common;
 using System.IO;
 
+
 namespace CapaNegocio
 {
     public class ManejoCN
@@ -23,6 +24,25 @@ namespace CapaNegocio
             return cn;
 
             
+        }
+
+        public static List<CapaNegocio.BD> obBD(string consulta, string cn)
+        {
+            var query = "select name from sys.databases";
+            var da = CapaDatos.metaData.obtenerBDs(query, cn);
+
+            var BD = new List<CapaNegocio.BD>();
+
+            da.ForEach((bb) =>
+            {
+                BD.Add(new CapaNegocio.BD()
+                {
+                    Nombre = bb
+                });
+            });
+
+            return BD;
+
         }
 
         public string SQLCn2(string servidor, string usuario, string contraseña) // utilizar el string conexion para conectarse a motor y meterle paramtros
@@ -59,6 +79,13 @@ namespace CapaNegocio
             var da = CapaDatos.consultas.QueryMYSQL(consulta, cn);
             return da;
         }
+
+        public static DataTable QueryOracle(string consulta, string cn)
+        {
+
+            var da = CapaDatos.consultas.QueryOracle(consulta, cn);
+            return da;
+        }
     }
    public class arbol
     {
@@ -76,9 +103,8 @@ namespace CapaNegocio
 
         }
 
-        public void excel()
-        { 
-        }
+ 
+        
     }
 
 }

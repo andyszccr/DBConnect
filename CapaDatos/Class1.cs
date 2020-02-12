@@ -9,20 +9,20 @@ using System.Data.SqlClient;
 using System.Data.Common;
 using MySql.Data.MySqlClient;
 using MySql.Data.Common;
-using Oracle.DataAccess.Client;
+using Oracle.ManagedDataAccess.Client;
 
 namespace CapaDatos
 {
     public class Conexiones
     {
-        public static String conexionSQL(string servidor, string usuario, string contraseña)// crear string de conexion apartir de parametros
+        public static String conexionSQL(string servidor, string usuario, string contraseña)// crear string de conexion apartir de parametros SQL SERVER
         {
             var cadena = new SqlConnectionStringBuilder();
             cadena.DataSource = servidor;
             cadena.IntegratedSecurity = false;
             cadena.UserID = usuario;
             cadena.Password = contraseña;
-            cadena.InitialCatalog = "QVET";
+            //cadena.InitialCatalog = "QVET"; // parametro de base de datos 
 
             var conexionBD = cadena.ToString();
 
@@ -39,7 +39,7 @@ namespace CapaDatos
             builder.UserID = usuario;
             builder.Password = contraseña;
             builder.PersistSecurityInfo = true;
-            //builder.Database = "prueba";
+            builder.Database = "prueba";
             var d = builder.ToString();
             return d;
         }
@@ -58,7 +58,7 @@ namespace CapaDatos
 
 
     }
-    public class consultas
+    public static class consultas
     {
         public static DataTable Query(string consulta, string conexionBD)
         {
@@ -70,6 +70,8 @@ namespace CapaDatos
             return dt;
         }
 
+       
+
         public static DataTable QueryMYSQL(string consulta, string conexionBD)
         {
             MySqlConnection ap = new MySqlConnection(conexionBD);
@@ -80,10 +82,49 @@ namespace CapaDatos
             return dt;
         }
 
+        public static DataTable QueryOracle(string consulta, string conexionBD)
+        {
+           OracleConnection ap = new OracleConnection(conexionBD);
+            OracleCommand ds = new OracleCommand(consulta, ap);
+            OracleDataAdapter daM = new OracleDataAdapter(ds);
+            DataTable dt = new DataTable();
+            daM.Fill(dt);
+            return dt;
+        }
+
+        
+
+
+
     }
 
-    public class metaData
+    public static class metaData
     {
+        public static IEnumerable<T> Select<T>(this IDataReader reader,
+                                       Func<IDataReader, T> projection)
+        {
+            while (reader.Read())
+            {
+                yield return projection(reader);
+            }
+        }
+
+        public static List<string> obtenerBDs(string consulta, string conexionBD)
+        {
+            SqlConnection ap = new SqlConnection(conexionBD);
+            var command = new SqlCommand(consulta, ap);
+            ap.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            var lista = new List<string>();
+            while (reader.Read())
+            {
+                var e = reader[0];
+                lista.Add(reader[0].ToString());
+            }
+
+            return lista;
+
+        }
 
     }
 }

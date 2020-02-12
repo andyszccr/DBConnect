@@ -12,8 +12,13 @@ using System.Data.SqlClient;
 using System.Data.Common;
 using MySql.Data.MySqlClient;
 using MySql.Data.Common;
-using System.Data.OracleClient;
 using System.IO;
+using Microsoft.Office.Interop.Excel;
+using Oracle.ManagedDataAccess.Client;
+
+
+
+
 
 
 namespace CapaDiseño
@@ -23,7 +28,33 @@ namespace CapaDiseño
     {
         public string servidor, usuario, contraseña, consulta, stringCN;
         public Boolean motorSql, motorMysql, motorOracle;
-        
+
+        public void excel(DataGridView tabla)
+        {
+            Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+            excel.Application.Workbooks.Add(true);
+            int IndicaColumna = 0;
+
+            foreach (DataGridViewColumn col in tabla.Columns)// recorre las columnas 
+            {
+                IndicaColumna++;
+                excel.Cells[1, IndicaColumna] = col.Name;
+            }
+            int IndicaFila = 0;
+            foreach (DataGridViewRow row in tabla.Rows)// recorre las filas 
+            {
+                IndicaFila++;
+                IndicaColumna = 0;
+                foreach (DataGridViewColumn col in tabla.Columns)
+                {
+                    IndicaColumna++;
+                    excel.Cells[IndicaFila + 1, IndicaColumna] = row.Cells[col.Name].Value;
+                }
+            }
+            excel.Visible = true;
+
+        }
+
 
         public void TVArbolDB_AfterSelect(object sender, TreeViewEventArgs e)
         {
@@ -83,6 +114,60 @@ namespace CapaDiseño
 
         }
 
+        private void BtnGuadarExc_Click(object sender, EventArgs e)
+        {
+            excel(DGVConsultas);
+        }
+
+        private void ProcesarArbol(List<CapaNegocio.BD> Bases)
+        {
+            Bases.ForEach((bd) =>
+            {
+                var cantidadTablas = bd.Tablas.Count;
+                var treeNodes = new TreeNode[cantidadTablas];
+                var index = 0;
+                bd.Tablas.ForEach((tabla) =>
+                {
+                    treeNodes[index] = new TreeNode(tabla.Nombre);
+                    index++;
+                });
+                var Tree = new TreeNode(bd.Nombre, treeNodes);
+                TVArbolDB.Nodes.Add(Tree);
+            });
+        }
+
+        //private void ProcesarArbolTotal()
+        //{
+        //    var BD = new List<CapaNegocio.BD>();
+
+        //    BD.Add(new CapaNegocio.BD()
+        //    {
+        //        Nombre = "QVET"
+        //    });
+        //    BD.Add(new CapaNegocio.BD()
+        //    {
+        //        Nombre = "QVET2"
+        //    });
+        //    // lalama a sql para sacar los datos .toList<string>();
+
+        //    BD.ForEach((baseDeDato) =>
+        //    {
+
+        //        baseDeDato.Tablas = new List<CapaNegocio.Tablas>();
+        //        // llama a traer las tablas
+        //        baseDeDato.Tablas.Add(new CapaNegocio.Tablas()
+        //        {
+        //            Nombre = "Animales"
+        //        });
+
+        //        baseDeDato.Tablas.Add(new CapaNegocio.Tablas()
+        //        {
+        //            Nombre = "Veterinarias"
+        //        });
+        //    });
+
+        //    this.ProcesarArbol(BD);
+        //}
         private void BtnConectar_Click(object sender, EventArgs e)
         {
             servidor = Convert.ToString(TxtHost.Text);
@@ -91,6 +176,8 @@ namespace CapaDiseño
             motorSql = Convert.ToBoolean(RdSQL.Checked);
             motorMysql = Convert.ToBoolean(RbMysql.Checked);
             motorOracle = Convert.ToBoolean(RbOracle.Checked);
+
+            //this.ProcesarArbolTotal();
 
             if (motorSql == true)
             {
@@ -103,7 +190,8 @@ namespace CapaDiseño
                     cnsql.Open();
                     MessageBox.Show("Conexion exitosa! ");
                     stringCN = cn.ToString();
-
+                    var datos = CapaNegocio.ManejoCN.obBD(consulta, stringCN);
+                    ProcesarArbol(datos);
                 }
                 catch (Exception ex)
                 {
@@ -124,7 +212,8 @@ namespace CapaDiseño
                         cnsql.Open();
                         MessageBox.Show("Conexion exitosa! ");
                         stringCN = cn.ToString();
-
+                        
+                        //this.ProcesarArbolTotal();
                     }
                     catch (Exception ex)
                     {
@@ -137,7 +226,7 @@ namespace CapaDiseño
                     {
                         CapaNegocio.ManejoCN prueba = new CapaNegocio.ManejoCN();
                         string cn = prueba.ORACLECn(servidor, usuario, contraseña);
-                        var cnsql = new SqlConnection(cn);
+                        var cnsql = new OracleConnection(cn);
 
                         try
                         {
@@ -196,6 +285,18 @@ namespace CapaDiseño
                 {
                     if (motorOracle==true)
                     {
+                        try
+                        {
+                            consulta = Convert.ToString(TxtConsulta.Text);
+                            var _ = new OracleConnection(stringCN);
+                            _.Open();
+
+                            DGVConsultas.DataSource = CapaNegocio.ManejoCN.QueryOracle(consulta, stringCN);
+                        }
+                        catch (Exception exs)
+                        {
+                            MessageBox.Show("error en consulta por " + exs.Message);
+                        }
 
                     }
                 }
@@ -275,7 +376,7 @@ namespace CapaDiseño
                     {
                         CapaNegocio.ManejoCN prueba = new CapaNegocio.ManejoCN();
                         string cn = prueba.ORACLECn(servidor, usuario, contraseña);
-                        var cnsql = new OracleConnection(cn);
+                       var cnsql = new OracleConnection (cn);
 
                         try
                         {

@@ -43,13 +43,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.BtnSalir = new System.Windows.Forms.Button();
-            this.BtnGuardarTxt = new System.Windows.Forms.Button();
-            this.BtnGuadarExc = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.TVArbolDB = new System.Windows.Forms.TreeView();
-            this.BtnAbrir = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.BtnAbrir = new System.Windows.Forms.Button();
+            this.BtnGuadarExc = new System.Windows.Forms.Button();
+            this.BtnGuardarTxt = new System.Windows.Forms.Button();
+            this.BtnSalir = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVConsultas)).BeginInit();
             this.SuspendLayout();
@@ -98,7 +98,7 @@
             // 
             // BtnEjecutar
             // 
-            this.BtnEjecutar.Location = new System.Drawing.Point(213, 58);
+            this.BtnEjecutar.Location = new System.Drawing.Point(229, 58);
             this.BtnEjecutar.Name = "BtnEjecutar";
             this.BtnEjecutar.Size = new System.Drawing.Size(94, 38);
             this.BtnEjecutar.TabIndex = 5;
@@ -197,62 +197,63 @@
             this.label3.TabIndex = 12;
             this.label3.Text = "Contraseña";
             // 
-            // BtnSalir
-            // 
-            this.BtnSalir.Location = new System.Drawing.Point(1142, 507);
-            this.BtnSalir.Name = "BtnSalir";
-            this.BtnSalir.Size = new System.Drawing.Size(94, 38);
-            this.BtnSalir.TabIndex = 13;
-            this.BtnSalir.Text = "Salir";
-            this.BtnSalir.UseVisualStyleBackColor = true;
-            this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
-            // 
-            // BtnGuardarTxt
-            // 
-            this.BtnGuardarTxt.Location = new System.Drawing.Point(1106, 102);
-            this.BtnGuardarTxt.Name = "BtnGuardarTxt";
-            this.BtnGuardarTxt.Size = new System.Drawing.Size(130, 31);
-            this.BtnGuardarTxt.TabIndex = 14;
-            this.BtnGuardarTxt.Text = "Guardar Consulta";
-            this.BtnGuardarTxt.UseVisualStyleBackColor = true;
-            this.BtnGuardarTxt.Click += new System.EventHandler(this.BtnGuardarTxt_Click);
-            // 
-            // BtnGuadarExc
-            // 
-            this.BtnGuadarExc.Location = new System.Drawing.Point(1106, 328);
-            this.BtnGuadarExc.Name = "BtnGuadarExc";
-            this.BtnGuadarExc.Size = new System.Drawing.Size(94, 28);
-            this.BtnGuadarExc.TabIndex = 15;
-            this.BtnGuadarExc.Text = "Exportar";
-            this.BtnGuadarExc.UseVisualStyleBackColor = true;
-            // 
             // TVArbolDB
             // 
             this.TVArbolDB.Location = new System.Drawing.Point(13, 102);
             this.TVArbolDB.Name = "TVArbolDB";
-            this.TVArbolDB.Size = new System.Drawing.Size(194, 414);
+            this.TVArbolDB.Size = new System.Drawing.Size(194, 427);
             this.TVArbolDB.TabIndex = 7;
             this.TVArbolDB.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TVArbolDB_AfterSelect);
-            // 
-            // BtnAbrir
-            // 
-            this.BtnAbrir.Location = new System.Drawing.Point(1106, 139);
-            this.BtnAbrir.Name = "BtnAbrir";
-            this.BtnAbrir.Size = new System.Drawing.Size(130, 31);
-            this.BtnAbrir.TabIndex = 16;
-            this.BtnAbrir.Text = "Abrir Consulta";
-            this.BtnAbrir.UseVisualStyleBackColor = true;
-            this.BtnAbrir.Click += new System.EventHandler(this.BtnAbrir_Click);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // BtnAbrir
+            // 
+            this.BtnAbrir.Image = global::CapaDiseño.Properties.Resources.documento;
+            this.BtnAbrir.Location = new System.Drawing.Point(1106, 139);
+            this.BtnAbrir.Name = "BtnAbrir";
+            this.BtnAbrir.Size = new System.Drawing.Size(55, 53);
+            this.BtnAbrir.TabIndex = 16;
+            this.BtnAbrir.UseVisualStyleBackColor = true;
+            this.BtnAbrir.Click += new System.EventHandler(this.BtnAbrir_Click);
+            // 
+            // BtnGuadarExc
+            // 
+            this.BtnGuadarExc.Image = global::CapaDiseño.Properties.Resources.sobresalir;
+            this.BtnGuadarExc.Location = new System.Drawing.Point(1106, 328);
+            this.BtnGuadarExc.Name = "BtnGuadarExc";
+            this.BtnGuadarExc.Size = new System.Drawing.Size(55, 55);
+            this.BtnGuadarExc.TabIndex = 15;
+            this.BtnGuadarExc.UseVisualStyleBackColor = true;
+            this.BtnGuadarExc.Click += new System.EventHandler(this.BtnGuadarExc_Click);
+            // 
+            // BtnGuardarTxt
+            // 
+            this.BtnGuardarTxt.Image = global::CapaDiseño.Properties.Resources.salvar__2_;
+            this.BtnGuardarTxt.Location = new System.Drawing.Point(1167, 139);
+            this.BtnGuardarTxt.Name = "BtnGuardarTxt";
+            this.BtnGuardarTxt.Size = new System.Drawing.Size(54, 53);
+            this.BtnGuardarTxt.TabIndex = 14;
+            this.BtnGuardarTxt.UseVisualStyleBackColor = true;
+            this.BtnGuardarTxt.Click += new System.EventHandler(this.BtnGuardarTxt_Click);
+            // 
+            // BtnSalir
+            // 
+            this.BtnSalir.Image = global::CapaDiseño.Properties.Resources.cerrar;
+            this.BtnSalir.Location = new System.Drawing.Point(1203, 503);
+            this.BtnSalir.Name = "BtnSalir";
+            this.BtnSalir.Size = new System.Drawing.Size(69, 47);
+            this.BtnSalir.TabIndex = 13;
+            this.BtnSalir.UseVisualStyleBackColor = true;
+            this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1248, 557);
+            this.ClientSize = new System.Drawing.Size(1284, 562);
             this.Controls.Add(this.BtnAbrir);
             this.Controls.Add(this.BtnGuadarExc);
             this.Controls.Add(this.BtnGuardarTxt);
