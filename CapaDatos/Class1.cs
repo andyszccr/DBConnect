@@ -39,7 +39,7 @@ namespace CapaDatos
             builder.UserID = usuario;
             builder.Password = contraseña;
             builder.PersistSecurityInfo = true;
-            builder.Database = "prueba";
+            //builder.Database = "prueba";
             var d = builder.ToString();
             return d;
         }
@@ -115,6 +115,23 @@ namespace CapaDatos
             var command = new SqlCommand(consulta, ap);
             ap.Open();
             SqlDataReader reader = command.ExecuteReader();
+            var lista = new List<string>();
+            while (reader.Read())
+            {
+                var e = reader[0];
+                lista.Add(reader[0].ToString());
+            }
+
+            return lista;
+
+        }
+
+        public static List<string> obtenerBDsMYSQL(string consulta, string conexionBD)
+        {
+            MySqlConnection ap = new MySqlConnection(conexionBD);
+            var command = new MySqlCommand(consulta, ap);
+            ap.Open();
+            MySqlDataReader reader = command.ExecuteReader();
             var lista = new List<string>();
             while (reader.Read())
             {

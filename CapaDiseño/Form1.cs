@@ -26,8 +26,13 @@ namespace CapaDiseño
      
     public partial class Form1 : Form
     {
-        public string servidor, usuario, contraseña, consulta, stringCN;
+        public string servidor, usuario, contraseña, consulta, stringCN, bd;
         public Boolean motorSql, motorMysql, motorOracle;
+
+        void TVArbolDB_NodeMouseClick(object sender,TreeNodeMouseClickEventArgs e)
+        {
+            TxtConsulta.Text = e.Node.Text;
+        }
 
         public void excel(DataGridView tabla)
         {
@@ -123,6 +128,7 @@ namespace CapaDiseño
         {
             Bases.ForEach((bd) =>
             {
+
                 var cantidadTablas = bd.Tablas.Count;
                 var treeNodes = new TreeNode[cantidadTablas];
                 var index = 0;
@@ -136,38 +142,7 @@ namespace CapaDiseño
             });
         }
 
-        //private void ProcesarArbolTotal()
-        //{
-        //    var BD = new List<CapaNegocio.BD>();
 
-        //    BD.Add(new CapaNegocio.BD()
-        //    {
-        //        Nombre = "QVET"
-        //    });
-        //    BD.Add(new CapaNegocio.BD()
-        //    {
-        //        Nombre = "QVET2"
-        //    });
-        //    // lalama a sql para sacar los datos .toList<string>();
-
-        //    BD.ForEach((baseDeDato) =>
-        //    {
-
-        //        baseDeDato.Tablas = new List<CapaNegocio.Tablas>();
-        //        // llama a traer las tablas
-        //        baseDeDato.Tablas.Add(new CapaNegocio.Tablas()
-        //        {
-        //            Nombre = "Animales"
-        //        });
-
-        //        baseDeDato.Tablas.Add(new CapaNegocio.Tablas()
-        //        {
-        //            Nombre = "Veterinarias"
-        //        });
-        //    });
-
-        //    this.ProcesarArbol(BD);
-        //}
         private void BtnConectar_Click(object sender, EventArgs e)
         {
             servidor = Convert.ToString(TxtHost.Text);
@@ -177,7 +152,7 @@ namespace CapaDiseño
             motorMysql = Convert.ToBoolean(RbMysql.Checked);
             motorOracle = Convert.ToBoolean(RbOracle.Checked);
 
-            //this.ProcesarArbolTotal();
+   
 
             if (motorSql == true)
             {
@@ -191,6 +166,11 @@ namespace CapaDiseño
                     MessageBox.Show("Conexion exitosa! ");
                     stringCN = cn.ToString();
                     var datos = CapaNegocio.ManejoCN.obBD(consulta, stringCN);
+                    datos.ForEach((bd) =>
+                    {
+                        var tablas = CapaNegocio.ManejoCN.bdTablas(bd.Nombre, stringCN);
+                        bd.Tablas = tablas;
+                    });
                     ProcesarArbol(datos);
                 }
                 catch (Exception ex)
@@ -212,8 +192,15 @@ namespace CapaDiseño
                         cnsql.Open();
                         MessageBox.Show("Conexion exitosa! ");
                         stringCN = cn.ToString();
-                        
-                        //this.ProcesarArbolTotal();
+                        var datos = CapaNegocio.ManejoCN.obBDMYSQL(consulta, stringCN);
+                        datos.ForEach((bd) =>
+                        {
+                            var tablas = CapaNegocio.ManejoCN.bdTablasMYSQL(bd.Nombre, stringCN);
+                            bd.Tablas = tablas;
+                        });
+                        ProcesarArbol(datos);
+
+
                     }
                     catch (Exception ex)
                     {

@@ -272,7 +272,7 @@
             this.Controls.Add(this.TxtUsuario);
             this.Controls.Add(this.TxtHost);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Herramienta de Ejecucion de Consultas";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVConsultas)).EndInit();

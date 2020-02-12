@@ -45,6 +45,63 @@ namespace CapaNegocio
 
         }
 
+        public static List<CapaNegocio.BD> obBDMYSQL(string consulta, string cn)
+        {
+            var query = "show databases";
+            var da = CapaDatos.metaData.obtenerBDsMYSQL(query, cn);
+
+            var BD = new List<CapaNegocio.BD>();
+
+            da.ForEach((bb) =>
+            {
+                BD.Add(new CapaNegocio.BD()
+                {
+                    Nombre = bb
+                });
+            });
+
+            return BD;
+
+        }
+
+        public static List<CapaNegocio.Tablas> bdTablas(string tabla, string cn)
+        {
+            var query = String.Format("select TABLE_NAME from {0}.INFORMATION_SCHEMA.TABLES", tabla);
+            var da = CapaDatos.metaData.obtenerBDs(query, cn);
+
+            var BD = new List<CapaNegocio.Tablas>();
+
+            da.ForEach((bb) =>
+            {
+                BD.Add(new CapaNegocio.Tablas()
+                {
+                    Nombre = bb
+                });
+            });
+
+            return BD;
+
+        }
+
+        public static List<CapaNegocio.Tablas> bdTablasMYSQL(string tabla, string cn)
+        {
+            var query = String.Format("SELECT  TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE table_schema='{0}'", tabla);
+            var da = CapaDatos.metaData.obtenerBDsMYSQL(query, cn);
+
+            var BD = new List<CapaNegocio.Tablas>();
+
+            da.ForEach((bb) =>
+            {
+                BD.Add(new CapaNegocio.Tablas()
+                {
+                    Nombre = bb
+                });
+            });
+
+            return BD;
+
+        }
+
         public string SQLCn2(string servidor, string usuario, string contraseña) // utilizar el string conexion para conectarse a motor y meterle paramtros
         {
             string cn = CapaDatos.Conexiones.conexionSQL(servidor, usuario, contraseña);
