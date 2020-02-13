@@ -8,7 +8,7 @@ namespace CapaNegocio
 {
     public class BD
     {
-        public string Nombre { get; set; }
-        public List<Tablas> Tablas { get; set; } 
+        public string Nombre { get; set; }// para recibir y dar nombre de base de datos 
+        public List<Tablas> Tablas { get; set; } // para armar la lista de tablas y bases de datos
     }
 }

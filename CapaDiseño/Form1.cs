@@ -26,14 +26,8 @@ namespace CapaDiseño
      
     public partial class Form1 : Form
     {
-        public string servidor, usuario, contraseña, consulta, stringCN, bd;
+        public string servidor, usuario, contraseña, consulta, stringCN, bd, BaseDatos;
         public Boolean motorSql, motorMysql, motorOracle;
-
-        void TVArbolDB_NodeMouseClick(object sender,TreeNodeMouseClickEventArgs e)
-        {
-            TxtConsulta.Text = e.Node.Text;
-        }
-
         public void excel(DataGridView tabla)
         {
             Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
@@ -63,7 +57,18 @@ namespace CapaDiseño
 
         public void TVArbolDB_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            // aca va a venir el nombre de la base datos
+            switch ((e.Action))
+            {
+                case TreeViewAction.ByKeyboard:
+                    BaseDatos = e.Node.Text;
+                    MessageBox.Show("Ha seleccionado el elemento "+ e.Node.Text + " para trabajar");
+                    break;
+                case TreeViewAction.ByMouse:
+                    BaseDatos = e.Node.Text;
+                    MessageBox.Show("Ha seleccionado el elemento " + e.Node.Text + " para trabajar");
+                    break;
+            }
+
         }
 
         private void BtnGuardarTxt_Click(object sender, EventArgs e)
@@ -239,10 +244,13 @@ namespace CapaDiseño
             {
                 try
                 {
+                    CapaNegocio.ManejoCN query = new CapaNegocio.ManejoCN();
+                    string cn = query.SQLCn2(servidor, usuario, contraseña,BaseDatos);
                     consulta = Convert.ToString(TxtConsulta.Text);
-                    var _ = new SqlConnection(stringCN);
+
+                    var _ = new SqlConnection(cn);
                     _.Open();
-                    DGVConsultas.DataSource = CapaNegocio.ManejoCN.ejecutar(consulta, stringCN);
+                    DGVConsultas.DataSource = CapaNegocio.ManejoCN.ejecutar(consulta, cn);
                     _.Close();
                 }
                 catch (Exception exs)
@@ -256,11 +264,13 @@ namespace CapaDiseño
                 {
                     try
                     {
+                        CapaNegocio.ManejoCN query = new CapaNegocio.ManejoCN();
+                        string cn = query.MYSQLCn2(servidor, usuario, contraseña, BaseDatos);
                         consulta = Convert.ToString(TxtConsulta.Text);
-                        var _ = new MySqlConnection(stringCN);
+                        var _ = new MySqlConnection(cn);
                         _.Open();
 
-                        DGVConsultas.DataSource = CapaNegocio.ManejoCN.QueryMYSQL(consulta,stringCN);
+                        DGVConsultas.DataSource = CapaNegocio.ManejoCN.QueryMYSQL(consulta,cn);
                     }
                     catch (Exception exs)
                     {
@@ -274,11 +284,13 @@ namespace CapaDiseño
                     {
                         try
                         {
+                            CapaNegocio.ManejoCN query = new CapaNegocio.ManejoCN();
+                            string cn = query.ORACLECn2(servidor, usuario, contraseña, BaseDatos);
                             consulta = Convert.ToString(TxtConsulta.Text);
-                            var _ = new OracleConnection(stringCN);
+                            var _ = new OracleConnection(cn);
                             _.Open();
 
-                            DGVConsultas.DataSource = CapaNegocio.ManejoCN.QueryOracle(consulta, stringCN);
+                            DGVConsultas.DataSource = CapaNegocio.ManejoCN.QueryOracle(consulta, cn);
                         }
                         catch (Exception exs)
                         {

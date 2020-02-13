@@ -8,6 +8,6 @@ namespace CapaNegocio
 {
     public class Tablas
     {
-        public string Nombre { get; set;}
+        public string Nombre { get; set;}// para obtener los nombre de base de datos y tablas
     }
 }

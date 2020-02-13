@@ -32,6 +32,23 @@ namespace CapaDatos
 
         }
 
+        public static String conexionSQLQ(string servidor, string usuario, string contraseña, string bd)// crear string de conexion apartir de parametros SQL SERVER
+        {
+            var cadena = new SqlConnectionStringBuilder();
+            cadena.DataSource = servidor;
+            cadena.IntegratedSecurity = false;
+            cadena.UserID = usuario;
+            cadena.Password = contraseña;
+            cadena.InitialCatalog = bd; // parametro de base de datos 
+
+            var conexionBD = cadena.ToString();
+
+
+            return conexionBD;
+
+
+        }
+
         public static String ConexionMysql(String servidor, string usuario, string contraseña)
         {
             MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
@@ -44,13 +61,36 @@ namespace CapaDatos
             return d;
         }
 
-        
+        public static String ConexionMysqlQ(String servidor, string usuario, string contraseña, string bd)
+        {
+            MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
+            builder.Server = servidor;
+            builder.UserID = usuario;
+            builder.Password = contraseña;
+            builder.PersistSecurityInfo = true;
+            builder.Database = bd;
+            var d = builder.ToString();
+            return d;
+        }
+
+
         public static String ConexionOracle(String servidor, string usuario, string contraseña)
         {
             OracleConnectionStringBuilder OracleBD = new OracleConnectionStringBuilder();
             OracleBD.Password = contraseña;
             OracleBD.UserID = usuario;
             OracleBD.DataSource = servidor;
+            var da = OracleBD.ToString();
+            return da;
+        }
+
+        public static String ConexionOracleQ(String servidor, string usuario, string contraseña, string bd)
+        {
+            OracleConnectionStringBuilder OracleBD = new OracleConnectionStringBuilder();
+            OracleBD.Password = contraseña;
+            OracleBD.UserID = usuario;
+            OracleBD.DataSource = servidor;
+            OracleBD.DBAPrivilege = bd;
             var da = OracleBD.ToString();
             return da;
         }

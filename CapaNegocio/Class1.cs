@@ -102,11 +102,10 @@ namespace CapaNegocio
 
         }
 
-        public string SQLCn2(string servidor, string usuario, string contraseña) // utilizar el string conexion para conectarse a motor y meterle paramtros
+        public string SQLCn2(string servidor, string usuario, string contraseña, string bd) // utilizar el string conexion para conectarse a motor y meterle paramtros
         {
-            string cn = CapaDatos.Conexiones.conexionSQL(servidor, usuario, contraseña);
-            string cn2 = cn + "nombre de la base de datos";
-            return cn2;
+            string cn = CapaDatos.Conexiones.conexionSQLQ(servidor, usuario, contraseña,bd);
+            return cn;
 
 
         }
@@ -116,9 +115,23 @@ namespace CapaNegocio
 
             return cn;
         }
+
+        public string MYSQLCn2(string servidor, string usuario, string contraseña, string bd) // utilizar el string conexion para conectarse a motor y meterle paramtros
+        {
+            string cn = CapaDatos.Conexiones.ConexionMysqlQ(servidor, usuario, contraseña, bd);
+
+            return cn;
+        }
         public string ORACLECn(string servidor, string usuario, string contraseña) // utilizar el string conexion para conectarse a motor y meterle paramtros
         {
             string cn = CapaDatos.Conexiones.ConexionOracle(servidor, usuario, contraseña);
+
+            return cn;
+        }
+
+        public string ORACLECn2(string servidor, string usuario, string contraseña, string bd) // utilizar el string conexion para conectarse a motor y meterle paramtros
+        {
+            string cn = CapaDatos.Conexiones.ConexionOracleQ(servidor, usuario, contraseña, bd);
 
             return cn;
         }
