@@ -1,6 +1,6 @@
 ﻿namespace CapaDiseño
 {
-    partial class Form1
+    partial class frmBases
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -50,6 +50,8 @@
             this.BtnGuadarExc = new System.Windows.Forms.Button();
             this.BtnGuardarTxt = new System.Windows.Forms.Button();
             this.BtnSalir = new System.Windows.Forms.Button();
+            this.btndesconectar = new System.Windows.Forms.Button();
+            this.oracleCommand1 = new Oracle.ManagedDataAccess.Client.OracleCommand();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVConsultas)).BeginInit();
             this.SuspendLayout();
@@ -108,6 +110,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.groupBox1.Controls.Add(this.RbOracle);
             this.groupBox1.Controls.Add(this.RbMysql);
             this.groupBox1.Controls.Add(this.RdSQL);
@@ -211,22 +214,24 @@
             // 
             // BtnAbrir
             // 
+            this.BtnAbrir.BackColor = System.Drawing.SystemColors.Info;
             this.BtnAbrir.Image = global::CapaDiseño.Properties.Resources.documento;
             this.BtnAbrir.Location = new System.Drawing.Point(1106, 139);
             this.BtnAbrir.Name = "BtnAbrir";
             this.BtnAbrir.Size = new System.Drawing.Size(55, 53);
             this.BtnAbrir.TabIndex = 16;
-            this.BtnAbrir.UseVisualStyleBackColor = true;
+            this.BtnAbrir.UseVisualStyleBackColor = false;
             this.BtnAbrir.Click += new System.EventHandler(this.BtnAbrir_Click);
             // 
             // BtnGuadarExc
             // 
+            this.BtnGuadarExc.BackColor = System.Drawing.Color.Green;
             this.BtnGuadarExc.Image = global::CapaDiseño.Properties.Resources.sobresalir;
             this.BtnGuadarExc.Location = new System.Drawing.Point(1106, 328);
             this.BtnGuadarExc.Name = "BtnGuadarExc";
             this.BtnGuadarExc.Size = new System.Drawing.Size(55, 55);
             this.BtnGuadarExc.TabIndex = 15;
-            this.BtnGuadarExc.UseVisualStyleBackColor = true;
+            this.BtnGuadarExc.UseVisualStyleBackColor = false;
             this.BtnGuadarExc.Click += new System.EventHandler(this.BtnGuadarExc_Click);
             // 
             // BtnGuardarTxt
@@ -241,19 +246,37 @@
             // 
             // BtnSalir
             // 
+            this.BtnSalir.BackColor = System.Drawing.Color.Salmon;
             this.BtnSalir.Image = global::CapaDiseño.Properties.Resources.cerrar;
-            this.BtnSalir.Location = new System.Drawing.Point(1203, 503);
+            this.BtnSalir.Location = new System.Drawing.Point(1215, 3);
             this.BtnSalir.Name = "BtnSalir";
             this.BtnSalir.Size = new System.Drawing.Size(69, 47);
             this.BtnSalir.TabIndex = 13;
-            this.BtnSalir.UseVisualStyleBackColor = true;
+            this.BtnSalir.UseVisualStyleBackColor = false;
             this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
-            // Form1
+            // btndesconectar
+            // 
+            this.btndesconectar.Location = new System.Drawing.Point(330, 58);
+            this.btndesconectar.Name = "btndesconectar";
+            this.btndesconectar.Size = new System.Drawing.Size(103, 36);
+            this.btndesconectar.TabIndex = 17;
+            this.btndesconectar.Text = "Desconectar";
+            this.btndesconectar.UseVisualStyleBackColor = true;
+            this.btndesconectar.Click += new System.EventHandler(this.btndesconectar_Click);
+            // 
+            // oracleCommand1
+            // 
+            this.oracleCommand1.Transaction = null;
+            // 
+            // frmBases
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1284, 562);
+            this.ControlBox = false;
+            this.Controls.Add(this.btndesconectar);
             this.Controls.Add(this.BtnAbrir);
             this.Controls.Add(this.BtnGuadarExc);
             this.Controls.Add(this.BtnGuardarTxt);
@@ -271,8 +294,9 @@
             this.Controls.Add(this.TxtPass);
             this.Controls.Add(this.TxtUsuario);
             this.Controls.Add(this.TxtHost);
-            this.Name = "Form1";
+            this.Name = "frmBases";
             this.Text = "Herramienta de Ejecucion de Consultas";
+            this.Load += new System.EventHandler(this.frmBases_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVConsultas)).EndInit();
@@ -305,6 +329,8 @@
         private System.Windows.Forms.TreeView TVArbolDB;
         private System.Windows.Forms.Button BtnAbrir;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button btndesconectar;
+        private Oracle.ManagedDataAccess.Client.OracleCommand oracleCommand1;
     }
 }
 

@@ -10,6 +10,14 @@ using System.Data.Common;
 using MySql.Data.MySqlClient;
 using MySql.Data.Common;
 using Oracle.ManagedDataAccess.Client;
+using System.Data.Odbc;
+using System.Data.OleDb;
+using System.Windows.Forms;
+using System.IO;
+
+
+
+
 
 namespace CapaDatos
 {
@@ -26,7 +34,7 @@ namespace CapaDatos
 
             var conexionBD = cadena.ToString();
 
-
+            //devuelve la variable de conexion 
             return conexionBD;
 
 
@@ -137,7 +145,7 @@ namespace CapaDatos
 
 
     }
-
+    //*****************************************************************************
     public static class metaData
     {
         public static IEnumerable<T> Select<T>(this IDataReader reader,
@@ -165,7 +173,7 @@ namespace CapaDatos
             return lista;
 
         }
-
+        //**********************************************************************************
         public static List<string> obtenerBDsMYSQL(string consulta, string conexionBD)
         {
             MySqlConnection ap = new MySqlConnection(conexionBD);
@@ -182,6 +190,63 @@ namespace CapaDatos
             return lista;
 
         }
+    }
+    //**************************************************************************
+    //  Region de Archivos 
+    //**************************************************************************
+    #region Archivos 
+  public class files
+    {
+        //**********************************************
+        public void Archivos(DataGridView table)
+        {
+            //****************************************
+            //validacion de datos 
+            try
+            {
+                int IndicaColumna = 0;
+                int IndicaFila = 0;
 
+
+                //microsoft para la aplicacion de excel
+                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+                excel.Application.Workbooks.Add(true);
+                
+
+                
+                //por cada columna del data grid view 
+                // recorre las columnas 
+                foreach (DataGridViewColumn col in table.Columns)
+                {
+                    //aumenta 
+                    IndicaColumna++;
+                    excel.Cells[1, IndicaColumna] = col.Name;
+                }
+
+
+                // recorre las filas 
+                foreach (DataGridViewRow row in table.Rows)
+                {
+                    IndicaFila++;
+                    IndicaColumna = 0;
+                    foreach (DataGridViewColumn col in table.Columns)
+                    {
+                        IndicaColumna++;
+                        excel.Cells[IndicaFila + 1, IndicaColumna] = row.Cells[col.Name].Value;
+                    }
+                }
+                //se muestra el excel
+                excel.Visible = true;
+            }
+            catch
+            {
+                //**************************************************************************************************
+                //mensaje de error en caso de que no se guarde el archivo  
+                MessageBox.Show("Error para guardar datos en excel","Guardar datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        //***********************************************************************************************************
+    #endregion
+  
     }
 }
