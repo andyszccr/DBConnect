@@ -10,8 +10,8 @@ using System.Windows.Forms;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Data.Common;
-using MySql.Data.MySqlClient;
-using MySql.Data.Common;
+//using MySql.Data.MySqlClient;
+//using MySql.Data.Common;
 using System.IO;
 using Microsoft.Office.Interop.Excel;
 using Oracle.ManagedDataAccess.Client;
@@ -265,11 +265,11 @@ namespace CapaDiseño
                 {
                     CapaNegocio.ManejoCN prueba = new CapaNegocio.ManejoCN();
                     string cn = prueba.MYSQLCn(servidor, usuario, contraseña);
-                    var cnsql = new MySqlConnection(cn);
+                    //var cnsql = new MySqlConnection(cn);
 
                     try
                     {
-                        cnsql.Open();
+                        //cnsql.Open();
                         MessageBox.Show("Conexion exitosa! ");
                         stringCN = cn.ToString();
                         var datos = CapaNegocio.ManejoCN.obBDMYSQL(consulta, stringCN);
@@ -353,8 +353,8 @@ namespace CapaDiseño
                         CapaNegocio.ManejoCN query = new CapaNegocio.ManejoCN();
                         string cn = query.MYSQLCn2(servidor, usuario, contraseña, BaseDatos);
                         consulta = Convert.ToString(TxtConsulta.Text);
-                        var _ = new MySqlConnection(cn);
-                        _.Open();
+                        //var _ = new MySqlConnection(cn);
+                        //_.Open();
 
                         DGVConsultas.DataSource = CapaNegocio.ManejoCN.QueryMYSQL(consulta,cn);
                     }
@@ -459,11 +459,11 @@ namespace CapaDiseño
                 {
                     CapaNegocio.ManejoCN prueba = new CapaNegocio.ManejoCN();
                     string cn = prueba.MYSQLCn(servidor, usuario, contraseña);
-                    var cnsql = new MySqlConnection(cn);
+                    //var cnsql = new MySqlConnection(cn);
 
                     try
                     {
-                        cnsql.Open();
+                        //cnsql.Open();
                         MessageBox.Show("Conexion exitosa! ");
 
                     }
