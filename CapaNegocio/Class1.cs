@@ -7,8 +7,8 @@ using CapaDatos;
 using System.Data.SqlClient;
 using System.Data.Sql;
 using System.Data;
-using MySql.Data.MySqlClient;
-using MySql.Data.Common;
+//using MySql.Data.MySqlClient;
+//using MySql.Data.Common;
 using System.IO;
 using System.Windows.Forms;
 //***************************************************
@@ -48,24 +48,24 @@ namespace CapaNegocio
             return BD;
         }
         //***************************************************************************************************
-        public static List<CapaNegocio.BD> obBDMYSQL(string consulta, string cn)
-        {
-            var query = "show databases";
-            var da = CapaDatos.metaData.obtenerBDsMYSQL(query, cn);
+        //public static List<CapaNegocio.BD> obBDMYSQL(string consulta, string cn)
+        //{
+        //    var query = "show databases";
+        //    var da = CapaDatos.metaData.obtenerBDsMYSQL(query, cn);
 
-            var BD = new List<CapaNegocio.BD>();
+        //    var BD = new List<CapaNegocio.BD>();
 
-            da.ForEach((bb) =>
-            {
-                BD.Add(new CapaNegocio.BD()
-                {
-                    Nombre = bb
-                });
-            });
+        //    da.ForEach((bb) =>
+        //    {
+        //        BD.Add(new CapaNegocio.BD()
+        //        {
+        //            Nombre = bb
+        //        });
+        //    });
 
-            return BD;
+        //    return BD;
 
-        }
+        //}
         //******************************************************************************************************
         public static List<CapaNegocio.Tablas> bdTablas(string tabla, string cn)
         {
@@ -86,24 +86,24 @@ namespace CapaNegocio
 
         }
         //***********************************************************************************************************
-        public static List<CapaNegocio.Tablas> bdTablasMYSQL(string tabla, string cn)
-        {
-            var query = String.Format("SELECT  TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE table_schema='{0}'", tabla);
-            var da = CapaDatos.metaData.obtenerBDsMYSQL(query, cn);
+        //public static List<CapaNegocio.Tablas> bdTablasMYSQL(string tabla, string cn)
+        //{
+        //    var query = String.Format("SELECT  TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE table_schema='{0}'", tabla);
+        //    var da = CapaDatos.metaData.obtenerBDsMYSQL(query, cn);
 
-            var BD = new List<CapaNegocio.Tablas>();
+        //    var BD = new List<CapaNegocio.Tablas>();
 
-            da.ForEach((bb) =>
-            {
-                BD.Add(new CapaNegocio.Tablas()
-                {
-                    Nombre = bb
-                });
-            });
+        //    da.ForEach((bb) =>
+        //    {
+        //        BD.Add(new CapaNegocio.Tablas()
+        //        {
+        //            Nombre = bb
+        //        });
+        //    });
 
-            return BD;
+        //    return BD;
 
-        }
+        //}
         //*******************************************************************************************************************************************
         public string SQLCn2(string servidor, string usuario, string contraseña, string bd) // utilizar el string conexion para conectarse a motor y meterle paramtros
         {
@@ -113,19 +113,19 @@ namespace CapaNegocio
 
         }
         //*******************************************************************************************************************************************
-        public string MYSQLCn(string servidor, string usuario, string contraseña) // utilizar el string conexion para conectarse a motor y meterle paramtros
-        {
-            string cn = CapaDatos.Conexiones.ConexionMysql(servidor, usuario, contraseña);
+        //public string MYSQLCn(string servidor, string usuario, string contraseña) // utilizar el string conexion para conectarse a motor y meterle paramtros
+        //{
+        //    string cn = CapaDatos.Conexiones.ConexionMysql(servidor, usuario, contraseña);
 
-            return cn;
-        }
+        //    return cn;
+        //}
         //*******************************************************************************************************************************************
-        public string MYSQLCn2(string servidor, string usuario, string contraseña, string bd) // utilizar el string conexion para conectarse a motor y meterle paramtros
-        {
-            string cn = CapaDatos.Conexiones.ConexionMysqlQ(servidor, usuario, contraseña, bd);
+        //public string MYSQLCn2(string servidor, string usuario, string contraseña, string bd) // utilizar el string conexion para conectarse a motor y meterle paramtros
+        //{
+        //    string cn = CapaDatos.Conexiones.ConexionMysqlQ(servidor, usuario, contraseña, bd);
 
-            return cn;
-        }
+        //    return cn;
+        //}
         //*******************************************************************************************************************************************
         public string ORACLECn(string servidor, string usuario, string contraseña) // utilizar el string conexion para conectarse a motor y meterle paramtros
         {
@@ -148,12 +148,12 @@ namespace CapaNegocio
 
         }
         //*******************************************************************************************************************************************
-        public static DataTable QueryMYSQL(string consulta, string cn)
-        {
+        //public static DataTable QueryMYSQL(string consulta, string cn)
+        //{
             
-            var da = CapaDatos.consultas.QueryMYSQL(consulta, cn);
-            return da;
-        }
+        //    var da = CapaDatos.consultas.QueryMYSQL(consulta, cn);
+        //    return da;
+        //}
         //*******************************************************************************************************************************************
         public static DataTable QueryOracle(string consulta, string cn)
         {

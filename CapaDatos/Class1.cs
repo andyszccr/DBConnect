@@ -7,8 +7,8 @@ using System.Data.Sql;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.Common;
-using MySql.Data.MySqlClient;
-using MySql.Data.Common;
+//using MySql.Data.MySqlClient;
+//using MySql.Data.Common;
 using Oracle.ManagedDataAccess.Client;
 using System.Data.Odbc;
 using System.Data.OleDb;
@@ -57,29 +57,29 @@ namespace CapaDatos
 
         }
 
-        public static String ConexionMysql(String servidor, string usuario, string contraseña)
-        {
-            MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
-            builder.Server = servidor;
-            builder.UserID = usuario;
-            builder.Password = contraseña;
-            builder.PersistSecurityInfo = true;
-            //builder.Database = "prueba";
-            var d = builder.ToString();
-            return d;
-        }
+        //public static String ConexionMysql(String servidor, string usuario, string contraseña)
+        //{
+        //    MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
+        //    builder.Server = servidor;
+        //    builder.UserID = usuario;
+        //    builder.Password = contraseña;
+        //    builder.PersistSecurityInfo = true;
+        //    //builder.Database = "prueba";
+        //    var d = builder.ToString();
+        //    return d;
+        //}
 
-        public static String ConexionMysqlQ(String servidor, string usuario, string contraseña, string bd)
-        {
-            MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
-            builder.Server = servidor;
-            builder.UserID = usuario;
-            builder.Password = contraseña;
-            builder.PersistSecurityInfo = true;
-            builder.Database = bd;
-            var d = builder.ToString();
-            return d;
-        }
+        //public static String ConexionMysqlQ(String servidor, string usuario, string contraseña, string bd)
+        //{
+        //    MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
+        //    builder.Server = servidor;
+        //    builder.UserID = usuario;
+        //    builder.Password = contraseña;
+        //    builder.PersistSecurityInfo = true;
+        //    builder.Database = bd;
+        //    var d = builder.ToString();
+        //    return d;
+        //}
 
 
         public static String ConexionOracle(String servidor, string usuario, string contraseña)
@@ -120,15 +120,15 @@ namespace CapaDatos
 
        
 
-        public static DataTable QueryMYSQL(string consulta, string conexionBD)
-        {
-            MySqlConnection ap = new MySqlConnection(conexionBD);
-            MySqlCommand ds = new MySqlCommand(consulta, ap);
-            MySqlDataAdapter daM = new MySqlDataAdapter(ds);
-            DataTable dt = new DataTable();
-            daM.Fill(dt);
-            return dt;
-        }
+        //public static DataTable QueryMYSQL(string consulta, string conexionBD)
+        //{
+        //    MySqlConnection ap = new MySqlConnection(conexionBD);
+        //    MySqlCommand ds = new MySqlCommand(consulta, ap);
+        //    MySqlDataAdapter daM = new MySqlDataAdapter(ds);
+        //    DataTable dt = new DataTable();
+        //    daM.Fill(dt);
+        //    return dt;
+        //}
 
         public static DataTable QueryOracle(string consulta, string conexionBD)
         {
@@ -174,22 +174,22 @@ namespace CapaDatos
 
         }
         //**********************************************************************************
-        public static List<string> obtenerBDsMYSQL(string consulta, string conexionBD)
-        {
-            MySqlConnection ap = new MySqlConnection(conexionBD);
-            var command = new MySqlCommand(consulta, ap);
-            ap.Open();
-            MySqlDataReader reader = command.ExecuteReader();
-            var lista = new List<string>();
-            while (reader.Read())
-            {
-                var e = reader[0];
-                lista.Add(reader[0].ToString());
-            }
+        //public static List<string> obtenerBDsMYSQL(string consulta, string conexionBD)
+        //{
+        //    MySqlConnection ap = new MySqlConnection(conexionBD);
+        //    var command = new MySqlCommand(consulta, ap);
+        //    ap.Open();
+        //    MySqlDataReader reader = command.ExecuteReader();
+        //    var lista = new List<string>();
+        //    while (reader.Read())
+        //    {
+        //        var e = reader[0];
+        //        lista.Add(reader[0].ToString());
+        //    }
 
-            return lista;
+        //    return lista;
 
-        }
+        //}
     }
     //**************************************************************************
     //  Region de Archivos 

@@ -263,29 +263,29 @@ namespace CapaDiseño
             {
                 if (motorMysql == true)
                 {
-                    CapaNegocio.ManejoCN prueba = new CapaNegocio.ManejoCN();
-                    string cn = prueba.MYSQLCn(servidor, usuario, contraseña);
-                    //var cnsql = new MySqlConnection(cn);
+                    //CapaNegocio.ManejoCN prueba = new CapaNegocio.ManejoCN();
+                    //string cn = prueba.MYSQLCn(servidor, usuario, contraseña);
+                    ////var cnsql = new MySqlConnection(cn);
 
-                    try
-                    {
-                        //cnsql.Open();
-                        MessageBox.Show("Conexion exitosa! ");
-                        stringCN = cn.ToString();
-                        var datos = CapaNegocio.ManejoCN.obBDMYSQL(consulta, stringCN);
-                        datos.ForEach((bd) =>
-                        {
-                            var tablas = CapaNegocio.ManejoCN.bdTablasMYSQL(bd.Nombre, stringCN);
-                            bd.Tablas = tablas;
-                        });
-                        ProcesarArbol(datos);
+                    //try
+                    //{
+                    //    //cnsql.Open();
+                    //    MessageBox.Show("Conexion exitosa! ");
+                    //    stringCN = cn.ToString();
+                    //    var datos = CapaNegocio.ManejoCN.obBDMYSQL(consulta, stringCN);
+                    //    datos.ForEach((bd) =>
+                    //    {
+                    //        var tablas = CapaNegocio.ManejoCN.bdTablasMYSQL(bd.Nombre, stringCN);
+                    //        bd.Tablas = tablas;
+                    //    });
+                    //    ProcesarArbol(datos);
 
 
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Conexion Fallida por " + ex.Message);
-                    }
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    MessageBox.Show("Conexion Fallida por " + ex.Message);
+                    //}
                 }
                 else
                 {
@@ -348,21 +348,21 @@ namespace CapaDiseño
                 if (motorMysql == true)
                 {
                     //validacion de datos 
-                    try
-                    {
-                        CapaNegocio.ManejoCN query = new CapaNegocio.ManejoCN();
-                        string cn = query.MYSQLCn2(servidor, usuario, contraseña, BaseDatos);
-                        consulta = Convert.ToString(TxtConsulta.Text);
-                        //var _ = new MySqlConnection(cn);
-                        //_.Open();
+                    //try
+                    //{
+                    //    CapaNegocio.ManejoCN query = new CapaNegocio.ManejoCN();
+                    //    string cn = query.MYSQLCn2(servidor, usuario, contraseña, BaseDatos);
+                    //    consulta = Convert.ToString(TxtConsulta.Text);
+                    //    //var _ = new MySqlConnection(cn);
+                    //    //_.Open();
 
-                        DGVConsultas.DataSource = CapaNegocio.ManejoCN.QueryMYSQL(consulta,cn);
-                    }
-                    catch (Exception exs)
-                    {
-                        //se muestra un mensaje en caso de error 
-                        MessageBox.Show("error en consulta por " + exs.Message);
-                    }
+                    //    DGVConsultas.DataSource = CapaNegocio.ManejoCN.QueryMYSQL(consulta,cn);
+                    //}
+                    //catch (Exception exs)
+                    //{
+                    //    //se muestra un mensaje en caso de error 
+                    //    MessageBox.Show("error en consulta por " + exs.Message);
+                    //}
 
                 }
                 else
@@ -457,20 +457,20 @@ namespace CapaDiseño
             {
                 if (motorMysql == true)
                 {
-                    CapaNegocio.ManejoCN prueba = new CapaNegocio.ManejoCN();
-                    string cn = prueba.MYSQLCn(servidor, usuario, contraseña);
-                    //var cnsql = new MySqlConnection(cn);
+                    //CapaNegocio.ManejoCN prueba = new CapaNegocio.ManejoCN();
+                    //string cn = prueba.MYSQLCn(servidor, usuario, contraseña);
+                    ////var cnsql = new MySqlConnection(cn);
 
-                    try
-                    {
-                        //cnsql.Open();
-                        MessageBox.Show("Conexion exitosa! ");
+                    //try
+                    //{
+                    //    //cnsql.Open();
+                    //    MessageBox.Show("Conexion exitosa! ");
 
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Conexion Fallida por " + ex.Message);
-                    }
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    MessageBox.Show("Conexion Fallida por " + ex.Message);
+                    //}
                 }
                 else
                 {   
