@@ -14,21 +14,23 @@ DBConnect es un sistema compatible con una amplia variedad de sistemas de gesti�
 * [Palete de Colores](https://colorhunt.co/palette/fafafac7eeff0077c01d242b)
 
 ## Mockups
-
 ![image](https://github.com/user-attachments/assets/c286dd69-2fb3-4098-a7c7-961e478c9e5d)
 
-## Autor ✒️
-**TU NOMBRE**
 
-* [micorreo@midominio.com](micorreo@midominio.com)
-* [LinkedIn](https://www.linkedin.com/in/tu-url-de-linkedin/)
-* [Behance](https://www.behance.net/tu-url-de-behance)
-* [Dribble](https://www.dribble.com/tu-url-de-dribble)
-* [Porfolio web](https://tu-dominio.com/)
+## Funcionalidad Anterior
+El sistema ejecutor de consultas, se utlizaba para realizar consultas en las bases de datos de SQL SERVER, Oracle y MySQL para ejecutar consultas en tiempo real, poder almacenar los datos en un formato excel. 
+
+**Sistema version 1.0**
+![image](https://github.com/user-attachments/assets/0b473616-c5d7-4c2c-839b-1e77f7f6682d)
+
+
+## Autor ✒️
+**Andrey Sanchez Zuñiga**
+* [andreyszcr@gmail.com](andreyszcr@gmail.com)
+
 
 ## Instalación 
-Este proyecto no necesita de instalación. Simplemente abre la carpeta o haz doble click en el .html
+Este proyecto no necesita de instalación. Simplemente abre la carpeta. 
   
 ## Licencia 📄
-MIT Public License v3.0
-No puede usarse comencialmente.
+MIT Public License v2.0
