@@ -7,7 +7,7 @@ DBConnect es un sistema compatible con una amplia variedad de sistemas de gesti�
 
 ## Tecnologías 🛠
 <!-- Iconos sacados de: https://github.com/hendrasob/badges/blob/master/README.md y https://github.com/alexandresanlim/Badges4-README.md-Profile -->
-![.NET](https://img.shields.io/badge/.NET-6.0-blue)(https://es.wikipedia.org/wiki/Microsoft_.NET)
+![.NET](https://img.shields.io/badge/.NET-6.0-blue)
 
 ## Paleta de Colores.
 ![image](https://github.com/user-attachments/assets/88205046-1155-4fa4-94c0-48816312b0a9)
