@@ -27,10 +27,13 @@ El sistema ejecutor de consultas, se utlizaba para realizar consultas en las bas
 ## Autor ✒️
 **Andrey Sanchez Zuñiga**
 * [andreyszcr@gmail.com](andreyszcr@gmail.com)
+* [Linkedln](https://www.linkedin.com/in/andreyszcr/)
+* [Twitter](https://x.com/Andrey62916578)
+* [Sitio Web](https://andreysz.netlify.app/)
 
 
 ## Instalación 
-Este proyecto no necesita de instalación. Simplemente abre la carpeta. 
+Este proyecto tendrá un instalador y podrán tener acceso al código y con el manual de usuario podrán usarlo por si desean modificarlo. 
   
 ## Licencia 📄
 MIT Public License v2.0
